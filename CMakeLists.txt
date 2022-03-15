@@ -3,4 +3,4 @@ project(Zero)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Zero main.cpp Box.cpp Box.h Container.cpp Container.h Piska.cpp Piska.h)
+add_executable(Zero main.cpp Box.h Container.h)

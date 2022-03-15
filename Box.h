@@ -154,6 +154,18 @@ public:
                   this->value == box.value &&
                   this->weight == box.weight;
     }
+
+    Box& operator = (const Box& box) {
+        if (&box == this){
+            return *this;
+        }
+        this->height = box.height;
+        this->lenght = box.lenght;
+        this->width = box.width;
+        this->weight = box.weight;
+        this->value = box.value;
+        return *this;
+    }
 };
 
 
