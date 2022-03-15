@@ -166,6 +166,8 @@ public:
         this->value = box.value;
         return *this;
     }
+
+
 };
 
 

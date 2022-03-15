@@ -76,6 +76,10 @@ public:
             ")cm Max weight:("<< obj.maxWeight<< ")kg" << endl;
         return out;
     }
+
+    Box& operator[]( int &i ){
+        return boxVector[i];
+    }
 };
 
 
