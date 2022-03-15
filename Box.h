@@ -89,19 +89,6 @@ public:
         return volume;
     }
 
-    /*Не знаю как сложить их в друг друга
-    * упдЖ
-    * знаю и сделал
-    if ((b[i].lenght > b[i + 1].lenght) && (b[i].width > b[i + 1].width) && (b[i].height > b[i + 1].height)) {
-                minLen = b[i + 1].lenght;
-                minWid = b[i + 1].width;
-                minHei = b[i + 1].height;
-            }
-            if ((c[i].lenght > c[i + 1].lenght) && (minLen > c[i + 1].lenght) &&
-                    (c[i].width > c[i + 1].width) && (minWid > c[i + 1].width) &&
-                    (c[i].height > c[i + 1].height) && (minHei > c[i + 1].height)) {
-
-    */
     bool ContentBoxes(Box b[]) {//коробку в коробку
         int size = sizeof(b) / sizeof(int);
         int minLen;//длина
@@ -139,7 +126,6 @@ public:
 
         return false;
     }
-
 
     friend istream& operator>>(istream& s, Box& obj) {//#7.1
         s >> obj.lenght;
