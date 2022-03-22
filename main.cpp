@@ -2,20 +2,27 @@
 #include "Box.h"
 #include "Container.h"
 
-
-
 using namespace std;
 
-
 int main() {
-    Box a(0, 0, 0, 0, 0);
-    Box b(1, 2, 3, 4., 5);
-    Box c(1, 2, 3, 4, 5);
-    c = a;
+    Box a;
+    Box b(2, 3, 4, 0, 0);
+    Box c(1, 2, 3, 0, 0);
+
+    Box arr[2] = {b, c};
     if (c == b) {
-        cout << "workaet" << endl << c << endl;
+        cout << "work" << endl << c << endl;
     }
     cout << a << b << c;
-    b.PrintBox();
+
+    Box::TotalValue(arr, 2);
+
+
+    if(Box::ContentBoxes(arr, 2)){
+        cout << "yes";
+    }else{
+        cout << "no";
+    }
+
 
 }

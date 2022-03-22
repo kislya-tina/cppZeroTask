@@ -1,7 +1,3 @@
-//
-// Created by kislya on 3/1/2022.
-//
-
 #ifndef ZERO_BOX_H
 #define ZERO_BOX_H
 #include <iostream>
@@ -28,12 +24,12 @@ public:
         value = 0;
     }
 
-    Box(int a1, int a2, int a3, double a4, int a5) {
-        lenght = a1;
-        width = a2;
-        height = a3;
-        weight = a4;
-        value = a5;
+    Box(int lenght, int width, int height, double weight, int value) {
+        this->lenght = lenght;
+        this->width = width;
+        this->height = height;
+        this->weight = weight;
+        this->value = value;
     }
     //getter
     int getLenght() const {return lenght;}
@@ -48,126 +44,25 @@ public:
     void setWeight(double wei) {Box::weight = wei;}
     void setValue(int val) {Box::value = val;}
 
-    int TotalValue(Box b[]) {//#2
-        int size = sizeof(b) / sizeof(int);
-        int total = 0;
-        for (int i = 0; i < size; i++) {
-            total += b[i].value;
-        }
-        return total;
-    }
+    static int TotalValue(Box b[], int size);
 
-    bool SizeControl(Box b[], int a) {//#3
-        int size = sizeof(b) / sizeof(int);
-        int k = 0;
-        for (int i = 0; i < size; i++) {
-            int summ = b[i].height + b[i].lenght + b[i].width;
-            if (summ <= a) {
-                k++;
-            }
-        }
-        if (k == size) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+    static bool SizeControl(Box b[], int a, int size);
 
-    int MaxWeight(Box b[], int maxV) {//#4
-        int size = sizeof(b) / sizeof(int);
-        double maxW = 0;//максимальная стоимость
-        for (int i = 0; i < size; i++) {
-            if ((b[i].weight > maxW) && (Volume(b[i]) <= maxV)) {
-                maxW = b[i].weight;
-            }
-        }
-    }
+    int MaxWeight(Box b[], int maxV, int size);
 
-    int Volume(Box a) {//объем
-        int volume = a.height * a.lenght * a.width;
-        return volume;
-    }
+    static int Volume(Box a);
 
-    bool ContentBoxes(Box b[]) {//коробку в коробку
-        int size = sizeof(b) / sizeof(int);
-        int minLen;//длина
-        int minWid;//ширина
-        int minHei;//высота
-        int memory = 0;
-        Box c[sizeof(b) / sizeof(int)];
-        Box d = Box(2147483647, 2147483647, 2147483647, 0, 0);
+    static bool ContentBoxes(Box b[], int size);
 
-        for (int i = 0; i < size; i++) {//копия ориг массива
-            c[i] = b[i];
-        }
+    friend istream& operator>>(istream& s, Box& obj);
 
-        for (int j = 0; j < size; j++) {
-            minLen = 2147483647;
-            minHei = 2147483647;
-            minWid = 2147483647;
-            for (int i = 0; i < size; i++) {//найти самую маленькую и запомнить ее индекс
-                if ((minLen > c[i].lenght) &&
-                    (minWid > c[i].width) &&
-                    (minHei > c[i].height)) {
+    friend ostream& operator<<(ostream& out, Box& obj);
 
-                    minLen = c[i].lenght;
-                    minWid = c[i].width;
-                    minHei = c[i].height;
-                    memory = i;
+    void PrintBox();
 
-                }
-                else continue;
+    bool operator == (const Box& box) const;
 
-            }
-
-            c[memory] = d;
-        }
-
-        return false;
-    }
-
-    friend istream& operator>>(istream& s, Box& obj) {//#7.1
-        s >> obj.lenght;
-        s >> obj.width;
-        s >> obj.height;
-        s >> obj.value;
-        s >> obj.weight;
-        return s;
-    }
-
-    friend ostream& operator<<(ostream& out, Box& obj) {//#7.2
-        out << "Size:(" << obj.lenght << ", " << obj.width << ", " << obj.height <<
-            ")cm Weight:(" << obj.weight <<
-            " kg) Value:(" << obj.value << " kop.)" << endl;
-        return out;
-    }
-
-    void PrintBox() {
-        cout << lenght << width << height << weight << value;
-    }
-
-    bool operator == (const Box& box) const {//#6
-        return	this->lenght == box.lenght &&
-                  this->width == box.width &&
-                  this->height == box.height &&
-                  this->value == box.value &&
-                  this->weight == box.weight;
-    }
-
-    Box& operator = (const Box& box) {
-        if (&box == this){
-            return *this;
-        }
-        this->height = box.height;
-        this->lenght = box.lenght;
-        this->width = box.width;
-        this->weight = box.weight;
-        this->value = box.value;
-        return *this;
-    }
-
-
+    Box& operator = (const Box& box);
 };
 
 
