@@ -34,7 +34,7 @@ int Box::MaxWeight(Box b[], int maxV, int size) {//#4
     }
 }
 
-int Box::Volume(Box a) {//объем
+int Box::Volume(Box a) {//объе
     int volume = a.height * a.lenght * a.width;
     return volume;
 }

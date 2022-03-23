@@ -25,7 +25,6 @@ public:
     }
     /*Container(vector<Box> boxvector, int lenght, int width, int height, double maxWeight) {
         for(){
-
         }
         this->lenght = lenght;
         this->width = width;

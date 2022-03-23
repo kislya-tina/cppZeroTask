@@ -37,7 +37,7 @@ public:
     int getHeight() const {return height;}
     double getWeight() const {return weight;}
     int getValue() const {return value;}
-    //setters
+    //setter
     void setLenght(int len) {Box::lenght = len;}
     void setWidth(int wid) {Box::width = wid;}
     void setHeight(int hei) {Box::height = hei;}

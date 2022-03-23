@@ -8,7 +8,7 @@ int main() {
     Box a;
     Box b(2, 3, 4, 0, 0);
     Box c(1, 2, 3, 0, 0);
-
+//
     Box arr[2] = {b, c};
     if (c == b) {
         cout << "work" << endl << c << endl;
