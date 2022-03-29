@@ -46,9 +46,9 @@ public:
 
     static int TotalValue(Box b[], int size);
 
-    static bool SizeControl(Box b[], int a, int size);
+    static bool SizeControl(Box b[], int size, int a);
 
-    int MaxWeight(Box b[], int maxV, int size);
+    static int MaxWeight(Box b[], int size, int maxV);
 
     static int Volume(Box a);
 

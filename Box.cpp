@@ -9,7 +9,7 @@ int Box::TotalValue(Box b[], int size) {//#2
     return total;
 }
 
-bool Box::SizeControl(Box b[], int a, int size) {//#3
+bool Box::SizeControl(Box b[], int size, int a) {//#3
     int k = 0;
     for (int i = 0; i < size; i++) {
         int summ = b[i].height + b[i].lenght + b[i].width;
@@ -25,7 +25,7 @@ bool Box::SizeControl(Box b[], int a, int size) {//#3
     }
 }
 
-int Box::MaxWeight(Box b[], int maxV, int size) {//#4
+int Box::MaxWeight(Box b[], int size, int maxV) {//#4
     double maxW = 0;//максимальная стоимость
     for (int i = 0; i < size; i++) {
         if ((b[i].weight > maxW) && (Volume(b[i]) <= maxV)) {
@@ -55,10 +55,20 @@ bool Box::ContentBoxes(Box b[], int size) {//коробку в коробку
         minLen = 2147483647;
         minHei = 2147483647;
         minWid = 2147483647;
-        for (int i = 0; i < size; i++) {//найти самую маленькую и запомнить ее индекс
+        for (int i = j + 1; i < size; i++) {//найти самую маленькую и запомнить ее индекс
+            if(c[i].lenght == c[j].lenght || c[i].width == c[j].width || c[i].height == c[j].height){
+                cout << "1";
+                return false;
+            }
+            if((b[i].lenght < b[j].lenght) && (b[i].width > b[j].width) && (b[i].height > b[j].height) ||
+                (b[i].lenght > b[j].lenght) && (b[i].width < b[j].width) && (b[i].height > b[j].height) ||
+                (b[i].lenght > b[j].lenght) && (b[i].width > b[j].width) && (b[i].height < b[j].height)){
+                cout << "2";
+                return false;
+            }
             if ((minLen > c[i].lenght) &&
-                (minWid > c[i].width) &&
-                (minHei > c[i].height)) {
+            (minWid > c[i].width) &&
+            (minHei > c[i].height)) {
 
                 minLen = c[i].lenght;
                 minWid = c[i].width;
@@ -67,13 +77,13 @@ bool Box::ContentBoxes(Box b[], int size) {//коробку в коробку
 
             }
             else continue;
-
         }
 
         c[memory] = d;
     }
+    //if что разные и там массив коробка которая да не большая и если будут разные показатели 131 и 222
 
-    return false;
+    return true;
 }
 
 istream& operator>>(istream& s, Box& obj) {//#7.1
