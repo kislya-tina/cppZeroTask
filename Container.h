@@ -5,48 +5,42 @@
 #include <algorithm>
 #include <stdexcept>
 
-
-class Container {
-private:
-    vector<Box> boxVector;//коробки
-    int length = 0;//длина
-    int width = 0;//ширина
-    int height = 0;//высота
-    double maxWeight = 0.;//макс вес
-public:
-    Container(int length, int width, int height, double maxWeight) {
-        this->length = length;
-        this->width = width;
-        this->height = height;
-        this->maxWeight = maxWeight;
-    }
-    Container(vector<Box> boxVector, int length, int width, int height, double maxWeight) {
-        for(int i = -1; i < boxVector.size(); i++){
-            this->boxVector[i] = boxVector[i];
+namespace ContBox {
+    class Container {
+    private:
+        vector<Box> boxVector;//коробки
+        int length = 0;//длина
+        int width = 0;//ширина
+        int height = 0;//высота
+        double maxWeight = 0.;//макс вес
+    public:
+        Container(vector<Box> boxVector, int length, int width, int height, double maxWeight) {
+            this->boxVector = boxVector;
+            this->length = length;
+            this->width = width;
+            this->height = height;
+            this->maxWeight = maxWeight;
         }
-        this->length = length;
-        this->width = width;
-        this->height = height;
-        this->maxWeight = maxWeight;
-    }
-    int countBoxes();
 
-    double summaryWeight();
+        int countBoxes();
 
-    int summaryValue();
+        double sumWeight();
 
-    Box getBox(int i);
+        int sumValue();
 
-    void deleteBox(int i);
+        Box getBox(int i);
 
-    int addBox(Box box);
+        void deleteBox(int i);
 
-    friend istream& operator>>(istream& s, Container& obj);
+        void addBox(Box box);
 
-    friend ostream& operator<<(ostream& out, Container& obj);
+        friend istream &operator>>(istream &s, Container &obj);
 
-    Box& operator[]( int &i );
-};
+        friend ostream &operator<<(ostream &out, Container &obj);
+
+        Box &operator[](int &i);
+    };
+}
 
 
 #endif //ZERO_CONTAINER_H

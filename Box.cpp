@@ -1,5 +1,6 @@
 #include "Box.h"
 #include <iostream>
+using namespace ContBox;
 
 int Box::TotalValue(Box b[], int size) {//#2
     int total = 0;
@@ -12,7 +13,7 @@ int Box::TotalValue(Box b[], int size) {//#2
 bool Box::SizeControl(Box b[], int size, int a) {//#3
     int k = 0;
     for (int i = 0; i < size; i++) {
-        int summ = b[i].height + b[i].lenght + b[i].width;
+        int summ = b[i].height + b[i].length + b[i].width;
         if (summ <= a) {
             k++;
         }
@@ -35,7 +36,7 @@ int Box::MaxWeight(Box b[], int size, int maxV) {//#4
 }
 
 int Box::Volume(Box a) {//объе
-    int volume = a.height * a.lenght * a.width;
+    int volume = a.height * a.length * a.width;
     return volume;
 }
 
@@ -56,21 +57,21 @@ bool Box::ContentBoxes(Box b[], int size) {//коробку в коробку
         minHei = 2147483647;
         minWid = 2147483647;
         for (int i = j + 1; i < size; i++) {//найти самую маленькую и запомнить ее индекс
-            if(c[i].lenght == c[j].lenght || c[i].width == c[j].width || c[i].height == c[j].height){
+            if(c[i].length == c[j].length || c[i].width == c[j].width || c[i].height == c[j].height){
                 cout << "1";
                 return false;
             }
-            if((b[i].lenght < b[j].lenght) && (b[i].width > b[j].width) && (b[i].height > b[j].height) ||
-                (b[i].lenght > b[j].lenght) && (b[i].width < b[j].width) && (b[i].height > b[j].height) ||
-                (b[i].lenght > b[j].lenght) && (b[i].width > b[j].width) && (b[i].height < b[j].height)){
+            if((b[i].length < b[j].length) && (b[i].width > b[j].width) && (b[i].height > b[j].height) ||
+               (b[i].length > b[j].length) && (b[i].width < b[j].width) && (b[i].height > b[j].height) ||
+               (b[i].length > b[j].length) && (b[i].width > b[j].width) && (b[i].height < b[j].height)){
                 cout << "2";
                 return false;
             }
-            if ((minLen > c[i].lenght) &&
-            (minWid > c[i].width) &&
-            (minHei > c[i].height)) {
+            if ((minLen > c[i].length) &&
+                (minWid > c[i].width) &&
+                (minHei > c[i].height)) {
 
-                minLen = c[i].lenght;
+                minLen = c[i].length;
                 minWid = c[i].width;
                 minHei = c[i].height;
                 memory = i;
@@ -81,33 +82,31 @@ bool Box::ContentBoxes(Box b[], int size) {//коробку в коробку
 
         c[memory] = d;
     }
-    //if что разные и там массив коробка которая да не большая и если будут разные показатели 131 и 222
-
     return true;
 }
 
 istream& operator>>(istream& s, Box& obj) {//#7.1
-    s >> obj.lenght;
+    s >> obj.length;
     s >> obj.width;
     s >> obj.height;
-    s >> obj.value;
     s >> obj.weight;
+    s >> obj.value;
     return s;
 }
 
 ostream& operator<<(ostream& out, Box& obj) {//#7.2
-    out << "Size:(" << obj.lenght << ", " << obj.width << ", " << obj.height <<
+    out << "Size:(" << obj.length << ", " << obj.width << ", " << obj.height <<
         ")cm Weight:(" << obj.weight <<
         " kg) Value:(" << obj.value << " kop.)" << endl;
     return out;
 }
 
 void Box::PrintBox() {
-        cout << lenght << width << height << weight << value;
+        cout << length << width << height << weight << value;
 }
 
 bool Box::operator == (const Box& box) const {//#6
-    return	this->lenght == box.lenght &&
+    return this->length == box.length &&
               this->width == box.width &&
               this->height == box.height &&
               this->value == box.value &&
@@ -119,7 +118,7 @@ Box& Box::operator = (const Box& box) {
         return *this;
     }
     this->height = box.height;
-    this->lenght = box.lenght;
+    this->length = box.length;
     this->width = box.width;
     this->weight = box.weight;
     this->value = box.value;
